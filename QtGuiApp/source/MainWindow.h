@@ -2,7 +2,7 @@
 #define MED_IMG_MAINWINDOW_H
 #include "pch.h"
 #include <QNetworkInterface>
-#include "../../OpencvUtil/source/OpenCVImageUtil.h"
+#include "OpenCVImageUtil.h"
 class QVTKOpenGLNativeWidget;
 class vtkRenderer;
 class DcmCStoreSender;

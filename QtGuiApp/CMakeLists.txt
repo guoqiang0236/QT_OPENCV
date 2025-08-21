@@ -38,6 +38,7 @@ target_precompile_headers(QtGuiApp PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/source/p
 target_include_directories(QtGuiApp
     PRIVATE 
         ${CMAKE_CURRENT_SOURCE_DIR}/source
+        ${CMAKE_SOURCE_DIR}/OpencvUtil/source
 )
 
 # 库lib目录
