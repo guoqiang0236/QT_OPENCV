@@ -15,7 +15,7 @@ int main(int argc, char* argv[]) {
     
 
     // ... 保持全局配置代码 ...
-    sysconfig::GlobalConfig& config = sysconfig::GlobalConfig::get();
+    
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling); // 启用高DPI缩放
     QSurfaceFormat format;
     format.setDepthBufferSize(24);
@@ -24,7 +24,10 @@ int main(int argc, char* argv[]) {
     format.setProfile(QSurfaceFormat::CoreProfile);
     QSurfaceFormat::setDefaultFormat(format);
     QApplication app(argc, argv);
-  
+
+    //加载配置文件
+    sysconfig::GlobalConfig& config = sysconfig::GlobalConfig::get();
+
     //loading加载界面
     //CustomSplashScreen loadingflash;
     //loadingflash.init();

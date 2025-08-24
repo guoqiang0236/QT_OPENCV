@@ -26,6 +26,8 @@ public:
 
     void pixel_visit_demo(cv::Mat &image);
 
+	void operator_demo(cv::Mat& image);
+
 private:
     cv::Mat m_mat;
 	bool m_hasopenimage = false; // 是否有打开的图像

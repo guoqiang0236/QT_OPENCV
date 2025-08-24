@@ -27,8 +27,10 @@ namespace sysconfig {
     private:
         void initLocalIpAddress();
         GlobalConfig();
+        void loadConfig();
     private:
         // 本机IP地址
         QString m_localIpAddress;
+        QSize m_adjustedSize;
     };
 }

@@ -27,7 +27,7 @@ private slots:
     void ShutDown();
     void Change_CurrentTime();
 	void ProgressChanged(int value, int max); // 进度条更新
-
+    void On_Clicked_Button();
 	void OpenImage(); 
     void OpenCVtest();
 

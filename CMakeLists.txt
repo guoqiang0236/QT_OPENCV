@@ -30,5 +30,16 @@ endforeach()
 add_subdirectory(QtGuiApp)
 add_subdirectory(OpencvUtil)
 
+
+# 拷贝配置文件到所有构建类型输出目录
+foreach(OUTPUTCONFIG IN ITEMS DEBUG RELEASE)
+    string(TOUPPER ${OUTPUTCONFIG} CONFIG)
+    configure_file(
+        ${CMAKE_SOURCE_DIR}/QtGuiApp/res/config.ini
+        ${CMAKE_RUNTIME_OUTPUT_DIRECTORY_${CONFIG}}/config.ini
+        COPYONLY
+    )
+endforeach()
+#configure_file(${CMAKE_SOURCE_DIR}/QtGuiApp/res/config.ini ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/config.ini COPYONLY)
 # 设置 QtGuiApp 为 Visual Studio 的启动项目
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT QtGuiApp)

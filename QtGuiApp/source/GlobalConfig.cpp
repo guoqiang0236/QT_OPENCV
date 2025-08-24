@@ -4,6 +4,7 @@
 #include <QNetworkInterface>
 #include <QHostAddress>
 #include <QDebug>
+#include <QSettings>
 // 实现单例获取方法
 sysconfig::GlobalConfig& sysconfig::GlobalConfig::get() {
     static GlobalConfig instance;
@@ -66,4 +67,26 @@ sysconfig::GlobalConfig::GlobalConfig() {
     useHardwareAcceleration = true;
     appDataPath = "default/path";  // 可在此初始化其他默认值
 	initLocalIpAddress();// 初始化本机IP地址
+    loadConfig();
+   
+}
+
+void sysconfig::GlobalConfig::loadConfig()
+{
+    QString configPath = QCoreApplication::applicationDirPath() + "/config.ini";
+    qDebug() << "Config path:" << configPath; // 输出实际路径
+    QSettings settings(configPath, QSettings::IniFormat);
+
+    // 加载窗口分辨率
+    int width = settings.value("Window/Width", 0).toInt();
+    int height = settings.value("Window/Height", 0).toInt();
+    if (width > 0 && height > 0) {
+        m_adjustedSize = QSize(width, height);
+    }
+    else {
+        m_adjustedSize = getAdjustedSize(); // 默认逻辑
+    }
+
+    // 继续加载其他配置项
+   
 }

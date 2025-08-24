@@ -98,6 +98,23 @@ void MainWindow::ProgressChanged(int value, int max)
 	}
 }
 
+
+
+
+void MainWindow::On_Clicked_Button()
+{
+    auto senderObj = sender();
+    if (senderObj == m_ui->pushButton_openimage)
+    {
+        OpenImage();
+	}
+    else if (senderObj = m_ui->pushButton_test)
+    {
+        QThread::sleep(3); // 单位是秒
+        OpenCVtest();
+    }
+}
+
 void MainWindow::OpenImage()
 {
     if (!m_opencvImageUtil)
@@ -136,8 +153,10 @@ void MainWindow::OpenCVtest()
         return;
 	}
 
-    m_opencvImageUtil->pixel_visit_demo(m_opencvImageUtil->getCurrentMat());
+    //m_opencvImageUtil->pixel_visit_demo(m_opencvImageUtil->getCurrentMat());
+    m_opencvImageUtil->operator_demo(m_opencvImageUtil->getCurrentMat());
 
+    
 }
 
 
@@ -161,9 +180,9 @@ void MainWindow::InitSlots()
     connect(m_ui->comboBox, &QComboBox::currentTextChanged, this, &MainWindow::StyleChanged);
     connect(m_ui->pushButton_shutdown, &QPushButton::clicked, this, &MainWindow::ShutDown);
 
-	connect(m_ui->pushButton_openimage, &QPushButton::clicked, this, &MainWindow::OpenImage);
+	connect(m_ui->pushButton_openimage, &QPushButton::clicked, this, &MainWindow::On_Clicked_Button);
 
-    connect(m_ui->pushButton_test, &QPushButton::clicked, this, &MainWindow::OpenCVtest);
+    connect(m_ui->pushButton_test, &QPushButton::clicked, this, &MainWindow::On_Clicked_Button);
   
     
     

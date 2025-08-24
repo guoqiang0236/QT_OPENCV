@@ -150,3 +150,47 @@ void OpenCVImageUtil::pixel_visit_demo(cv::Mat& image)
 
     cv::imshow(windowName,image);
 }
+
+void OpenCVImageUtil::operator_demo(cv::Mat& image)
+{
+    cv::Mat result = cv::Mat::zeros(image.size(), image.type());
+	cv::Mat m = cv::Mat::zeros(image.size(), image.type());
+ 
+	
+    //result = image + cv::Scalar(50, 50, 50);
+    //cv::add(image, cv::Scalar(50, 50, 50), image);
+    //cv::multiply(image, m, image);
+
+
+   // int w = image.cols;
+   // int h = image.rows;
+   // int dims = image.channels();
+
+   // //值
+   //for (int row = 0; row < h; row++){
+   //     for (int col = 0; col < w; col++) {
+   //        
+   //         cv::Vec3b p1 = image.at<cv::Vec3b>(row, col);
+   //         cv::Vec3b p2 = m.at<cv::Vec3b>(row, col);
+   //         result.at<cv::Vec3b>(row, col) [0] = cv::saturate_cast<uchar>(p1[0] + p2[0]);
+   //         result.at<cv::Vec3b>(row, col) [1] = cv::saturate_cast<uchar>(p1[1] + p2[1]);
+   //         result.at<cv::Vec3b>(row, col) [2] = cv::saturate_cast<uchar>(p1[2] + p2[2]);
+
+   //         
+   //     }
+   // }
+   // 加法：每个像素加上一个标量
+   //cv::add(image, cv::Scalar(50, 50, 50), result);
+
+   // 减法：每个像素减去一个标量
+   cv::subtract(image, cv::Scalar(50, 50, 50), result);
+
+   // 乘法：每个像素与另一个矩阵逐元素相乘
+   //cv::multiply(image, m, result);
+
+   // 除法：每个像素与另一个矩阵逐元素相除
+   //cv::divide(image, m, result);
+
+    std::string windowName = "OperatorDemo";
+    cv::imshow(windowName, result);
+}
